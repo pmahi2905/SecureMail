@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecureMail Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scan Result</h1>
+
+        <div class="score-box" style="border-color: {{ result.color }}">
+            <h2 style="color: {{ result.color }}">
+                {{ result.risk_level }} RISK — {{ result.score }}/100
+            </h2>
+        </div>
+
+        {% if result.urgent_flags %}
+        <div class="flag-section">
+            <h3>Urgent Words Found</h3>
+            <ul>
+                {% for word in result.urgent_flags %}
+                <li>{{ word }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if result.link_flags %}
+        <div class="flag-section">
+            <h3>Suspicious Links</h3>
+            <ul>
+                {% for flag in result.link_flags %}
+                <li>{{ flag }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if result.sender_flags %}
+        <div class="flag-section">
+            <h3>Sender Problems</h3>
+            <ul>
+                {% for flag in result.sender_flags %}
+                <li>{{ flag }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if result.score >= 60 %}
+        <div class="recommendation high">
+            Do not click any links. Report or delete this email.
+        </div>
+        {% elif result.score >= 30 %}
+        <div class="recommendation medium">
+            Be careful. Verify the sender before doing anything.
+        </div>
+        {% else %}
+        <div class="recommendation low">
+            This looks low risk, but still be careful.
+        </div>
+        {% endif %}
+
+        <a href="/">Scan Another Email</a>
+        <br>
+        <a href="/history">View History</a>
+    </div>
+</body>
+</html>

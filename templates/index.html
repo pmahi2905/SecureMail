@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecureMail</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ SecureMail</h1>
+        <p class="subtitle">Check if an email looks suspicious or unsafe.</p>
+
+        <form method="POST">
+            <input type="text" name="sender" placeholder="Sender email">
+            <input type="text" name="subject" placeholder="Email subject">
+            <textarea name="body" rows="10" placeholder="Paste email body here"></textarea>
+
+            <button type="submit">Analyze Email</button>
+        </form>
+
+        <a href="/history">View Scan History</a>
+    </div>
+</body>
+</html>

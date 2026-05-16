@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecureMail History</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scan History</h1>
+
+        {% if scans %}
+            <table>
+                <tr>
+                    <th>Sender</th>
+                    <th>Subject</th>
+                    <th>Score</th>
+                    <th>Risk</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for scan in scans %}
+                <tr>
+                    <td>{{ scan[0] }}</td>
+                    <td>{{ scan[1] }}</td>
+                    <td>{{ scan[2] }}</td>
+                    <td>{{ scan[3] }}</td>
+                    <td>{{ scan[4] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No scans yet.</p>
+        {% endif %}
+
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>
